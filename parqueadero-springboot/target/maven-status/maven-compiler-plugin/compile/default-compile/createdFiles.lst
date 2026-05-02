@@ -1,0 +1,5 @@
+com\parqueadero\service\VehicleService.class
+com\parqueadero\repository\VehicleRepository.class
+com\parqueadero\model\Vehicle.class
+com\parqueadero\controller\VehicleController.class
+com\parqueadero\ParqueaderoApplication.class
