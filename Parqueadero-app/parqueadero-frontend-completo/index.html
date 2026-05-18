@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gestión de Parqueadero</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Gestión de Parqueadero</h1>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>MENÚ</h3>
+            <a href="#" onclick="showSection('dashboard')">Dashboard</a>
+            <a href="#" onclick="showSection('vehiculos')">Vehículos</a>
+            <a href="#" onclick="showSection('ingresos')">Registro Ingreso</a>
+            <a href="#" onclick="showSection('salidas')">Registro Salida</a>
+            <a href="#" onclick="showSection('propietarios')">Propietarios</a>
+            <a href="#" onclick="showSection('reportes')">Reportes</a>
+            <a href="#" onclick="logout()">Cerrar Sesión</a>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="section">
+                <div class="card">
+                    <h2>Dashboard</h2>
+                    <p>Panel principal del sistema.</p>
+                </div>
+            </div>
+
+            <!-- Vehículos Section -->
+            <div id="vehiculos" class="section" style="display:none">
+                <div class="card">
+                    <h2>Registro de Vehículos</h2>
+                    <input type="text" id="plate" placeholder="Placa">
+                    <input type="text" id="owner" placeholder="Propietario">
+                    <select id="type">
+                        <option>Carro</option>
+                        <option>Moto</option>
+                        <option>Camión</option>
+                    </select>
+                    <button onclick="addVehicle()">Guardar</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Placa</th>
+                                <th>Propietario</th>
+                                <th>Tipo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehicleTable"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Registro de Ingreso Section -->
+            <div id="ingresos" class="section" style="display:none">
+                <div class="card">
+                    <h2>Registro de Ingreso</h2>
+                    <p>Formulario para registrar ingreso de vehículos.</p>
+                </div>
+            </div>
+
+            <!-- Registro de Salida Section -->
+            <div id="salidas" class="section" style="display:none">
+                <div class="card">
+                    <h2>Registro de Salida</h2>
+                    <p>Formulario para registrar salida y calcular pago.</p>
+                </div>
+            </div>
+
+            <!-- Propietarios Section -->
+            <div id="propietarios" class="section" style="display:none">
+                <div class="card">
+                    <h2>Gestión de Propietarios</h2>
+                    <p>Registro y listado de propietarios.</p>
+                </div>
+            </div>
+
+            <!-- Reportes Section -->
+            <div id="reportes" class="section" style="display:none">
+                <div class="card">
+                    <h2>Reportes</h2>
+                    <p>Visualización de estadísticas y reportes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
