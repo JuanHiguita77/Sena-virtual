@@ -8,13 +8,16 @@ import java.util.List;
 public class VehicleRepository {
 
     private final List<Vehicle> vehicles = new ArrayList<>();
-
+    private Long nextId = 1L;
+    
     public List<Vehicle> findAll() {
         return vehicles;
     }
 
-    public void save(Vehicle vehicle) {
+    public Vehicle save(Vehicle vehicle) {
+        vehicle.setId(nextId++);
         vehicles.add(vehicle);
+        return vehicle;
     }
 
     public Vehicle findById(Long id) {

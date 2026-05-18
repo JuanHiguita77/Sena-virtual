@@ -38,8 +38,8 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                    
-                        <tbody id="vehicleTable"></tbody>
+                        <!-- ID único para el dashboard -->
+                        <tbody id="dashboardTable"></tbody>
                     </table>
                 </div>
             </div>
@@ -55,15 +55,18 @@
                         <option>Moto</option>
                         <option>Camión</option>
                     </select>
-                    <button onclick="addVehicle()">Guardar</button>
-                    <table>
+                    <!-- Nombre de función corregido: saveVehicle() -->
+                    <button onclick="saveVehicle()">Guardar</button>
+                    <table border="1" width="100%" cellpadding="10">
                         <thead>
                             <tr>
                                 <th>Placa</th>
                                 <th>Propietario</th>
                                 <th>Tipo</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
+                        <!-- ID único para la sección vehículos -->
                         <tbody id="vehicleTable"></tbody>
                     </table>
                 </div>
@@ -103,6 +106,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Nombre de archivo corregido: app.js -->
+    <script src="app.js"></script>
 </body>
 </html>
