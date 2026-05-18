@@ -32,6 +32,7 @@ public class VehicleService {
 
             vehicle.setPlate(updatedVehicle.getPlate());
             vehicle.setOwner(updatedVehicle.getOwner());
+            vehicle.setVehicleType(updatedVehicle.getVehicleType());
 
             return true;
         }

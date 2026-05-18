@@ -16,9 +16,9 @@ async function saveVehicle() {
 
     const plate = document.getElementById("plate").value.trim();
     const owner = document.getElementById("owner").value.trim();
-    const type  = document.getElementById("type").value;
+    const vehicleType  = document.getElementById("vehicleType").value;
 
-    if (!plate || !owner) {
+    if (!plate || !owner || !vehicleType) {
         alert("Todos los campos son obligatorios");
         return;
     }
@@ -26,7 +26,7 @@ async function saveVehicle() {
     const vehicle = {
         plate,
         owner,
-        type
+        vehicleType
     };
 
     let response;
@@ -70,8 +70,9 @@ async function loadVehicles() {
                     <td>${vehicle.id}</td>
                     <td>${vehicle.plate}</td>
                     <td>${vehicle.owner}</td>
+                    <td>${vehicle.vehicleType}</td>
                     <td>
-                        <button onclick="editVehicle(${vehicle.id}, '${vehicle.plate}', '${vehicle.owner}')">Editar</button>
+                        <button onclick="editVehicle(${vehicle.id}, '${vehicle.plate}', '${vehicle.owner}', '${vehicle.vehicleType}')">Editar</button>
                         <button onclick="deleteVehicle(${vehicle.id})">Eliminar</button>
                     </td>
                 </tr>
@@ -88,9 +89,9 @@ async function loadVehicles() {
                 <tr>
                     <td>${vehicle.plate}</td>
                     <td>${vehicle.owner}</td>
-                    <td>${vehicle.type || '-'}</td>
+                    <td>${vehicle.vehicleType || '-'}</td>
                     <td>
-                        <button onclick="editVehicle(${vehicle.id}, '${vehicle.plate}', '${vehicle.owner}')">Editar</button>
+                        <button onclick="editVehicle(${vehicle.id}, '${vehicle.plate}', '${vehicle.owner}','${vehicle.vehicleType}')">Editar</button>
                         <button onclick="deleteVehicle(${vehicle.id})">Eliminar</button>
                     </td>
                 </tr>
@@ -100,10 +101,11 @@ async function loadVehicles() {
 }
 
 // Editar
-function editVehicle(id, plate, owner) {
+function editVehicle(id, plate, owner, vehicleType) {
     editingId = id;
     document.getElementById("plate").value = plate;
     document.getElementById("owner").value = owner;
+    document.getElementById("vehicleType").value = vehicleType;
     showSection('vehiculos'); // Navegar a la sección de edición
 }
 
@@ -127,6 +129,7 @@ function clearForm() {
     editingId = null;
     document.getElementById("plate").value = "";
     document.getElementById("owner").value = "";
+    document.getElementById("vehicleType").value = "Carro";
 }
 
 // Cerrar sesión
