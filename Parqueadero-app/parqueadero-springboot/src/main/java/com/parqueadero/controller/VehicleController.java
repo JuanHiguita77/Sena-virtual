@@ -1,29 +1,55 @@
-
 package com.parqueadero.controller;
 
 import com.parqueadero.model.Vehicle;
 import com.parqueadero.service.VehicleService;
+
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//Controlador de los endpoints
 @RestController
 @RequestMapping("/vehicles")
+@CrossOrigin("*")
 public class VehicleController {
 
-    private VehicleService service = new VehicleService();
+    private final VehicleService service = new VehicleService();
 
-    // Obtener todos los vehículos
     @GetMapping
     public List<Vehicle> getVehicles() {
         return service.getAllVehicles();
     }
 
-    // Registrar vehículo
     @PostMapping
-    public String addVehicle(@RequestBody Vehicle vehicle) {
-        service.addVehicle(vehicle);
-        return "Vehículo registrado";
+    public String addVehicle(@Valid @RequestBody Vehicle vehicle) {
+
+        return service.addVehicle(vehicle);
+    }
+
+    @PutMapping("/{id}")
+    public String updateVehicle(
+            @PathVariable Long id,
+            @Valid @RequestBody Vehicle vehicle
+    ) {
+
+        boolean updated = service.updateVehicle(id, vehicle);
+
+        if (updated) {
+            return "Vehículo actualizado";
+        }
+
+        return "Vehículo no encontrado";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteVehicle(@PathVariable Long id) {
+
+        boolean deleted = service.deleteVehicle(id);
+
+        if (deleted) {
+            return "Vehículo eliminado";
+        }
+
+        return "Vehículo no encontrado";
     }
 }
