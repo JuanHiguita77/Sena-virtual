@@ -1,52 +1,122 @@
+const API_URL = "http://localhost:8080/vehicles";
 
-let vehicles = [];
+let editingId = null;
 
-function login(){
-  const user=document.getElementById('user').value;
-  const pass=document.getElementById('pass').value;
+// Registrar o actualizar
+async function saveVehicle() {
 
-  if(user==="admin" && pass==="1234"){
-    window.location.href="index.html";
-  }else{
-    alert("Credenciales incorrectas");
-  }
+    const plate = document.getElementById("plate").value.trim();
+    const owner = document.getElementById("owner").value.trim();
+
+    if (!plate || !owner) {
+        alert("Todos los campos son obligatorios");
+        return;
+    }
+
+    const vehicle = {
+        id: editingId || Date.now(),
+        plate,
+        owner
+    };
+
+    let response;
+
+    if (editingId) {
+
+        response = await fetch(`${API_URL}/${editingId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(vehicle)
+        });
+
+    } else {
+
+        response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(vehicle)
+        });
+    }
+
+    const result = await response.text();
+
+    alert(result);
+
+    clearForm();
+
+    loadVehicles();
 }
 
-function logout(){
-  window.location.href="login.html";
+// Obtener vehículos
+async function loadVehicles() {
+
+    const response = await fetch(API_URL);
+
+    const vehicles = await response.json();
+
+    const table = document.getElementById("vehicleTable");
+
+    table.innerHTML = "";
+
+    vehicles.forEach(vehicle => {
+
+        table.innerHTML += `
+            <tr>
+                <td>${vehicle.id}</td>
+                <td>${vehicle.plate}</td>
+                <td>${vehicle.owner}</td>
+                <td>
+                    <button onclick="editVehicle(${vehicle.id}, '${vehicle.plate}', '${vehicle.owner}')">
+                        Editar
+                    </button>
+
+                    <button onclick="deleteVehicle(${vehicle.id})">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
 }
 
-function showSection(id){
-  const sections=document.querySelectorAll('.section');
-  sections.forEach(sec=>sec.style.display="none");
-  document.getElementById(id).style.display="block";
+// Editar
+function editVehicle(id, plate, owner) {
+
+    editingId = id;
+
+    document.getElementById("plate").value = plate;
+    document.getElementById("owner").value = owner;
 }
 
-function addVehicle(){
-  const plate=document.getElementById('plate').value;
-  const owner=document.getElementById('owner').value;
-  const type=document.getElementById('type').value;
+// Eliminar
+async function deleteVehicle(id) {
 
-  if(plate===""||owner===""){
-    alert("Complete todos los campos");
-    return;
-  }
+    const confirmDelete = confirm("¿Eliminar vehículo?");
 
-  vehicles.push({plate,owner,type});
-  renderTable();
-  document.getElementById('plate').value="";
-  document.getElementById('owner').value="";
+    if (!confirmDelete) return;
+
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "DELETE"
+    });
+
+    const result = await response.text();
+
+    alert(result);
+
+    loadVehicles();
 }
 
-function renderTable(){
-  const table=document.getElementById('vehicleTable');
-  table.innerHTML="";
-  vehicles.forEach(v=>{
-    table.innerHTML+=`
-      <tr>
-        <td>${v.plate}</td>
-        <td>${v.owner}</td>
-        <td>${v.type}</td>
-      </tr>`;
-  });
+// Limpiar formulario
+function clearForm() {
+
+    editingId = null;
+
+    document.getElementById("plate").value = "";
+    document.getElementById("owner").value = "";
 }
+
+loadVehicles();
