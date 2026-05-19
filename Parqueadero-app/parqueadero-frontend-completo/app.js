@@ -2,7 +2,7 @@ const API_URL = "http://localhost:8080/vehicles";
 
 let editingId = null;
 
-// ✅ Función para navegar entre secciones
+//Función para navegar entre secciones
 function showSection(sectionId) {
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => {
@@ -54,13 +54,13 @@ async function saveVehicle() {
     loadVehicles();
 }
 
-// Obtener vehículos y poblar ambas tablas
+// Obtener vehículos y llenar ambas tablas
 async function loadVehicles() {
 
     const response = await fetch(API_URL);
     const vehicles = await response.json();
 
-    // ✅ Tabla del dashboard (con columna ID)
+    // Tabla del dashboard
     const dashboardTable = document.getElementById("dashboardTable");
     if (dashboardTable) {
         dashboardTable.innerHTML = "";
@@ -80,7 +80,7 @@ async function loadVehicles() {
         });
     }
 
-    // ✅ Tabla de la sección Vehículos (con columna Tipo)
+    // Tabla de la sección Vehículos
     const vehicleTable = document.getElementById("vehicleTable");
     if (vehicleTable) {
         vehicleTable.innerHTML = "";
