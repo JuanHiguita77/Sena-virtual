@@ -16,9 +16,9 @@ public class Vehicle {
     private Long id;
 
     @NotBlank(message = "La placa es obligatoria")
-    @Size(min = 5, max = 10, message = "La placa debe tener entre 5 y 10 caracteres")
+    @Size(min = 5, max = 6, message = "La placa debe tener entre 5 y 6 caracteres")
     @Pattern(
-            regexp = "^[A-Za-z0-9]+$",
+            regexp = "^[A-Za-z0-5]+$",
             message = "La placa solo puede contener letras y números"
     )
     private String plate;
@@ -31,7 +31,7 @@ public class Vehicle {
     @Size(min = 3, max = 20, message = "El tipo de vehículo debe tener entre 3 y 20 caracteres")
     private String vehicleType;
 
-    // Constructor vacío requerido por JPA
+    // Constructor vacío
     public Vehicle() {}
 
     // Constructor con parámetros
