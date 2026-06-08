@@ -15,6 +15,15 @@ export async function createVehicle(vehicle) {
   });
 }
 
+/**
+ * Actualiza la información de un vehículo en el servidor.
+ * 
+ * @async
+ * @function updateVehicle
+ * @param {string} id - El identificador único del vehículo a actualizar.
+ * @param {Object} vehicle - Un objeto que contiene los datos actualizados del vehículo.
+ * @returns {Promise<Response>} Una promesa que resuelve con la respuesta de la solicitud fetch.
+ */
 export async function updateVehicle(id, vehicle) {
   return await fetch(`${API_URL}/${id}`, {
     method: "PUT",
