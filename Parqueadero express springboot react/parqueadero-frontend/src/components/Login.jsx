@@ -20,26 +20,31 @@ export default function Login({ setUser }) {
     try {
       // Llama al servicio de autenticación con el usuario y contraseña
       const res = await login({
-        username,
-        password
+        username: String(username).trim(), // Asegura que el nombre de usuario no tenga espacios al inicio o final
+        password: String(password).trim() // Asegura que la contraseña no tenga espacios al inicio o final
       });
 
       // Guarda el usuario en el almacenamiento local
       localStorage.setItem("user", username);
 
-      // Actualiza el estado del usuario en el componente padre
-      setUser(username);
-
       // Redirige al usuario al dashboard
       navigate("/dashboard");
 
     } catch (err) {
-      // Muestra un mensaje de error si ocurre un problema
-      setError(
-        err.response?.data?.message || "Usuario o contraseña incorrectos."
-      );
-    }
-  }
+
+      console.log("ERROR COMPLETO:", err);
+    
+      console.log("STATUS:", err.response?.status);
+    
+      console.log("DATA:", err.response?.data);
+    
+      console.log("BODY ENVIADO:", {
+        username,
+        password
+      });
+    
+      setError(err.response?.data?.message || "Error al iniciar sesión");
+    }}
 
   return (
     <div className="login-page">
