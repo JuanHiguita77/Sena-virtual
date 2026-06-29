@@ -49,10 +49,6 @@ export default function Login({ setUser }) {
   return (
     <div className="login-page">
       <div className="login-card">
-        {/* Logo del sistema */}
-        <div className="login-logo">
-          🚗
-        </div>
 
         {/* Título y descripción */}
         <h1>Sistema de Parqueadero</h1>
