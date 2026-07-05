@@ -18,7 +18,7 @@ public class Vehicle {
     @NotBlank(message = "La placa es obligatoria")
     @Size(min = 5, max = 6, message = "La placa debe tener entre 5 y 6 caracteres")
     @Pattern(
-            regexp = "^[A-Za-z0-5]+$",
+            regexp = "^[A-Za-z0-9]+$",
             message = "La placa solo puede contener letras y números"
     )
     private String plate;
