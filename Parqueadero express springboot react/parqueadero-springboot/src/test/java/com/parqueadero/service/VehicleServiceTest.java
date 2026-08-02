@@ -64,94 +64,94 @@ public class VehicleServiceTest {
     }
 
     @Test
-void shouldReturnVehicleList() {
+    void shouldReturnVehicleList() {
 
-    VehicleService service = new VehicleService();
+        VehicleService service = new VehicleService();
 
-    service.addVehicle(new Vehicle(null,"AAA111","Juan","Carro"));
-    service.addVehicle(new Vehicle(null,"BBB222","Pedro","Moto"));
+        service.addVehicle(new Vehicle(null,"AAA111","Juan","Carro"));
+        service.addVehicle(new Vehicle(null,"BBB222","Pedro","Moto"));
 
-    assertEquals(
-            2,
-            service.getAllVehicles().size()
-    );
+        assertEquals(
+                2,
+                service.getAllVehicles().size()
+        );
 
-}
+    }
 
-@Test
-void shouldUpdateVehicle() {
+    @Test
+    void shouldUpdateVehicle() {
 
-    VehicleService service = new VehicleService();
+        VehicleService service = new VehicleService();
 
-    Vehicle vehicle = new Vehicle(
-            null,
-            "ABC123",
-            "Juan",
-            "Carro"
-    );
+        Vehicle vehicle = new Vehicle(
+                null,
+                "ABC123",
+                "Juan",
+                "Carro"
+        );
 
-    service.addVehicle(vehicle);
+        service.addVehicle(vehicle);
 
-    Vehicle updated = new Vehicle(
-            null,
-            "XYZ999",
-            "Carlos",
-            "Moto"
-    );
+        Vehicle updated = new Vehicle(
+                null,
+                "XYZ999",
+                "Carlos",
+                "Moto"
+        );
 
-    boolean result = service.updateVehicle(1L, updated);
+        boolean result = service.updateVehicle(1L, updated);
 
-    assertTrue(result);
+        assertTrue(result);
 
-}
+    }
 
-@Test
-void shouldNotUpdateNonExistingVehicle() {
+    @Test
+    void shouldNotUpdateNonExistingVehicle() {
 
-    VehicleService service = new VehicleService();
+        VehicleService service = new VehicleService();
 
-    Vehicle updated = new Vehicle(
-            null,
-            "XYZ999",
-            "Carlos",
-            "Moto"
-    );
+        Vehicle updated = new Vehicle(
+                null,
+                "XYZ999",
+                "Carlos",
+                "Moto"
+        );
 
-    boolean result = service.updateVehicle(100L, updated);
+        boolean result = service.updateVehicle(100L, updated);
 
-    assertFalse(result);
+        assertFalse(result);
 
-}
+    }
 
-@Test
-void shouldDeleteVehicle() {
+    @Test
+    void shouldDeleteVehicle() {
 
-    VehicleService service = new VehicleService();
+        VehicleService service = new VehicleService();
 
-    service.addVehicle(
-            new Vehicle(
-                    null,
-                    "ABC123",
-                    "Juan",
-                    "Carro"
-            )
-    );
+        service.addVehicle(
+                new Vehicle(
+                        null,
+                        "ABC123",
+                        "Juan",
+                        "Carro"
+                )
+        );
 
-    boolean result = service.deleteVehicle(1L);
+        boolean result = service.deleteVehicle(1L);
 
-    assertTrue(result);
+        assertTrue(result);
 
-}
+    }
 
-@Test
-void shouldNotDeleteVehicleIfNotExists() {
+    @Test
+    void shouldNotDeleteVehicleIfNotExists() {
 
-    VehicleService service = new VehicleService();
+        VehicleService service = new VehicleService();
 
-    boolean result = service.deleteVehicle(50L);
+        boolean result = service.deleteVehicle(50L);
 
-    assertFalse(result);
+        assertFalse(result);
 
-}
+    }
 
 }
