@@ -1,0 +1,5 @@
+# Created at 2026-08-02T18:22:30.973
+Boot Manifest-JAR contains absolute paths in classpath 'D:\ASUS USER\DESARROLLO WEB\REPOSITORIOS\SENA VIRTUAL\Parqueadero express springboot react\parqueadero-springboot\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
