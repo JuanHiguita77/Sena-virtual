@@ -1,40 +1,75 @@
-<!DOCTYPE html>
-<html lang="es" ng-app="empleadosApp">
-
-<head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Gestión de Empleados</title>
-
-    <!-- Materialize CSS -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    >
-
-    <!-- Nuestros estilos -->
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-
 <body>
 
-    <div class="container">
+    <div class="container" ng-controller="EmpleadoController">
 
         <h3 class="center-align">
             Gestión de Empleados
         </h3>
 
-        <div ng-controller="EmpleadoController">
+        <p class="center-align grey-text">
+            Registro y administración de empleados
+        </p>
 
-            <p class="center-align">
-                Aplicación conectada correctamente
-            </p>
+        <!-- Mensaje de error -->
+        <div
+            class="card-panel red lighten-2 white-text"
+            ng-if="mensaje"
+        >
+            {{ mensaje }}
+        </div>
+
+        <!-- Tabla de empleados -->
+        <div class="card">
+
+            <div class="card-content">
+
+                <span class="card-title">
+                    Lista de empleados
+                </span>
+
+                <table class="striped responsive-table">
+
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cargo</th>
+                            <th>Oficina</th>
+                            <th>Salario</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr ng-repeat="empleado in empleados">
+
+                            <td>
+                                {{ empleado.name }}
+                            </td>
+
+                            <td>
+                                {{ empleado.position }}
+                            </td>
+
+                            <td>
+                                {{ empleado.office }}
+                            </td>
+
+                            <td>
+                                ${{ empleado.salary }}
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 
     </div>
+
 
     <!-- AngularJS -->
     <script
@@ -46,9 +81,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
     </script>
 
-    <!-- Aplicación -->
+    <!-- Nuestra aplicación -->
     <script src="js/app.js"></script>
 
 </body>
-
-</html>

@@ -1,6 +1,9 @@
 // Importamos Express
 const express = require('express');
 
+//CORS
+const cors = require('cors');
+
 // Importamos nuestra función de conexión a MongoDB
 const connectDB = require('./database');
 
@@ -9,6 +12,8 @@ const empleadosRoutes = require('./routes/empleados.routes');
 
 // Creamos la aplicación Express
 const app = express();
+
+app.use(cors());
 
 // Puerto donde funcionará nuestra API
 const PORT = 3000;
