@@ -1,0 +1,106 @@
+{
+  "info": {
+    "_postman_id": "50fab706-5d29-4f2e-8eee-ab6c571774d5",
+    "name": "Parqueadero-SENA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29104128"
+  },
+  "item": [
+    {
+      "name": "POST VEHICLES",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plate\": \"ABC343\",\r\n  \"owner\": \"Juan SENA\",\r\n  \"vehicleType\": \"moto\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localHost:8080/vehicles",
+          "protocol": "http",
+          "host": [
+            "localHost"
+          ],
+          "port": "8080",
+          "path": [
+            "vehicles"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET ALL VEHICLES",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localHost:8080/vehicles",
+          "protocol": "http",
+          "host": [
+            "localHost"
+          ],
+          "port": "8080",
+          "path": [
+            "vehicles"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE VEHICLE",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localHost:8080/vehicles/delete",
+          "protocol": "http",
+          "host": [
+            "localHost"
+          ],
+          "port": "8080",
+          "path": [
+            "vehicles",
+            "delete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT VEHICLE",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"plate\": \"ABC343\",\r\n  \"owner\": \"Juan pepito\",\r\n  \"vehicleType\": \"carro\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localHost:8080/vehicles/1",
+          "protocol": "http",
+          "host": [
+            "localHost"
+          ],
+          "port": "8080",
+          "path": [
+            "vehicles",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
