@@ -55,6 +55,7 @@
                             <th>Cargo</th>
                             <th>Oficina</th>
                             <th>Salario</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
 
@@ -78,11 +79,187 @@
                                 ${{ empleado.salary }}
                             </td>
 
+                            <td>
+
+                                <button
+                                    class="btn-small blue"
+                                    ng-click="editarEmpleado(empleado)"
+                                >
+                                    Editar
+                                </button>
+                        
+                                <button
+                                    class="btn-small red"
+                                    ng-click="eliminarEmpleado(empleado)"
+                                >
+                                    Eliminar
+                                </button>
+                        
+                            </td>
+
                         </tr>
 
                     </tbody>
 
                 </table>
+
+            </div>
+
+        </div>
+
+        <!-- Formulario de registro -->
+        <div class="card">
+
+            <div class="card-content">
+
+                <span class="card-title">
+                    Registrar empleado
+                </span>
+
+                <div class="row">
+
+                    <!-- Nombre -->
+                    <div class="input-field col s12 m6">
+                        <input
+                            type="text"
+                            id="name"
+                            ng-model="nuevoEmpleado.name"
+                        >
+                        <label for="name">Nombre</label>
+                    </div>
+
+                    <!-- Cargo -->
+                    <div class="input-field col s12 m6">
+                        <input
+                            type="text"
+                            id="position"
+                            ng-model="nuevoEmpleado.position"
+                        >
+                        <label for="position">Cargo</label>
+                    </div>
+
+                    <!-- Oficina -->
+                    <div class="input-field col s12 m6">
+                        <input
+                            type="text"
+                            id="office"
+                            ng-model="nuevoEmpleado.office"
+                        >
+                        <label for="office">Oficina</label>
+                    </div>
+
+                    <!-- Salario -->
+                    <div class="input-field col s12 m6">
+                        <input
+                            type="number"
+                            id="salary"
+                            ng-model="nuevoEmpleado.salary"
+                        >
+                        <label for="salary">Salario</label>
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn blue"
+                    ng-click="crearEmpleado()"
+                >
+                    Registrar empleado
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Formulario de edición -->
+
+        <div
+            class="card"
+            ng-if="editando"
+        >
+
+            <div class="card-content">
+
+                <span class="card-title">
+                    Editar empleado
+                </span>
+
+                <div class="row">
+
+                    <div class="input-field col s12 m6">
+
+                        <input
+                            type="text"
+                            id="editName"
+                            ng-model="empleadoEditado.name"
+                        >
+
+                        <label class="active" for="editName">
+                            Nombre
+                        </label>
+
+                    </div>
+
+
+                    <div class="input-field col s12 m6">
+
+                        <input
+                            type="text"
+                            id="editPosition"
+                            ng-model="empleadoEditado.position"
+                        >
+
+                        <label class="active" for="editPosition">
+                            Cargo
+                        </label>
+
+                    </div>
+
+
+                    <div class="input-field col s12 m6">
+
+                        <input
+                            type="text"
+                            id="editOffice"
+                            ng-model="empleadoEditado.office"
+                        >
+
+                        <label class="active" for="editOffice">
+                            Oficina
+                        </label>
+
+                    </div>
+
+
+                    <div class="input-field col s12 m6">
+
+                        <input
+                            type="number"
+                            id="editSalary"
+                            ng-model="empleadoEditado.salary"
+                        >
+
+                        <label class="active" for="editSalary">
+                            Salario
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn blue"
+                    ng-click="actualizarEmpleado()"
+                >
+                    Guardar cambios
+                </button>
+
+                <button
+                    class="btn grey"
+                    ng-click="cancelarEdicion()"
+                >
+                    Cancelar
+                </button>
 
             </div>
 

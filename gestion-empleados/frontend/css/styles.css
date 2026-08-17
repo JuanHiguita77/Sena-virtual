@@ -5,3 +5,15 @@ body {
 .container {
     margin-top: 40px;
 }
+
+.btn-small {
+    margin: 2px;
+}
+
+.card {
+    margin-top: 25px;
+}
+
+table {
+    margin-top: 10px;
+}
