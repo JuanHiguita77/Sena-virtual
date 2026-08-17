@@ -10,6 +10,10 @@ body {
     margin: 2px;
 }
 
+.card-panel {
+    margin-top: 20px;
+}
+
 .card {
     margin-top: 25px;
 }

@@ -32,8 +32,11 @@
 
         <!-- Mensaje de error -->
         <div
-            class="card-panel red lighten-2 white-text"
+            class="card-panel"
             ng-if="mensaje"
+            ng-class="tipoMensaje === 'success'
+                ? 'green lighten-2 white-text'
+                : 'red lighten-2 white-text'"
         >
             {{ mensaje }}
         </div>

@@ -55,14 +55,25 @@ app.controller('EmpleadoController', function ($scope, $http) {
 
     $scope.crearEmpleado = function () {
 
+        // Validar datos antes de enviar al backend
+        const errorValidacion =
+            $scope.validarEmpleado($scope.nuevoEmpleado);
+    
+        if (errorValidacion) {
+    
+            $scope.mensaje = errorValidacion;
+            $scope.tipoMensaje = 'error';
+    
+            return;
+        }
+    
         $http.post(API_URL, $scope.nuevoEmpleado)
             .then(function (response) {
-
+    
                 console.log('Empleado creado:', response.data);
-
-                // Mostrar el nuevo empleado inmediatamente
+    
                 $scope.empleados.push(response.data);
-
+    
                 // Limpiar formulario
                 $scope.nuevoEmpleado = {
                     name: '',
@@ -70,18 +81,23 @@ app.controller('EmpleadoController', function ($scope, $http) {
                     office: '',
                     salary: null
                 };
-
-                $scope.mensaje = 'Empleado registrado correctamente';
-
+    
+                $scope.mensaje =
+                    'Empleado registrado correctamente';
+    
+                $scope.tipoMensaje = 'success';
+    
             })
             .catch(function (error) {
-
+    
                 console.error('Error al crear empleado:', error);
-
+    
                 $scope.mensaje =
                     error.data?.message ||
                     'No fue posible registrar el empleado';
-
+    
+                $scope.tipoMensaje = 'error';
+    
             });
     };
 
@@ -111,34 +127,55 @@ app.controller('EmpleadoController', function ($scope, $http) {
 
     $scope.actualizarEmpleado = function () {
 
+        // Validar datos antes de enviar al backend
+        const errorValidacion =
+            $scope.validarEmpleado($scope.empleadoEditado);
+    
+        if (errorValidacion) {
+    
+            $scope.mensaje = errorValidacion;
+            $scope.tipoMensaje = 'error';
+    
+            return;
+        }
+    
         $http.put(
             API_URL + '/' + $scope.empleadoEditado._id,
             $scope.empleadoEditado
         )
         .then(function (response) {
-
-            console.log('Empleado actualizado:', response.data);
-
-            // Volvemos a consultar los empleados
-            // para mostrar la información actualizada
+    
+            console.log(
+                'Empleado actualizado:',
+                response.data
+            );
+    
+            // Actualizar la lista
             $scope.obtenerEmpleados();
-
-            $scope.mensaje = 'Empleado actualizado correctamente';
-
-            // Salimos del modo edición
+    
+            $scope.mensaje =
+                'Empleado actualizado correctamente';
+    
+            $scope.tipoMensaje = 'success';
+    
             $scope.editando = false;
-
+    
             $scope.empleadoEditado = {};
-
+    
         })
         .catch(function (error) {
-
-            console.error('Error al actualizar:', error);
-
+    
+            console.error(
+                'Error al actualizar:',
+                error
+            );
+    
             $scope.mensaje =
                 error.data?.message ||
                 'No fue posible actualizar el empleado';
-
+    
+            $scope.tipoMensaje = 'error';
+    
         });
     };
 
@@ -191,4 +228,60 @@ app.controller('EmpleadoController', function ($scope, $http) {
 
         });
     };
+
+    // ==========================================
+    // VALIDAR DATOS DEL EMPLEADO
+    // ==========================================
+
+    $scope.validarEmpleado = function (empleado) {
+
+        const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+        // Validar nombre
+        if (!empleado.name || !empleado.name.trim()) {
+            return 'El nombre es obligatorio';
+        }
+
+        if (!soloLetras.test(empleado.name.trim())) {
+            return 'El nombre solo puede contener letras y espacios';
+        }
+
+        // Validar cargo
+        if (!empleado.position || !empleado.position.trim()) {
+            return 'El cargo es obligatorio';
+        }
+
+        if (!soloLetras.test(empleado.position.trim())) {
+            return 'El cargo solo puede contener letras y espacios';
+        }
+
+        // Validar oficina
+        if (!empleado.office || !empleado.office.trim()) {
+            return 'La oficina es obligatoria';
+        }
+
+        if (!soloLetras.test(empleado.office.trim())) {
+            return 'La oficina solo puede contener letras y espacios';
+        }
+
+        // Validar salario
+        if (
+            empleado.salary === null ||
+            empleado.salary === undefined ||
+            empleado.salary === ''
+        ) {
+            return 'El salario es obligatorio';
+        }
+
+        if (isNaN(empleado.salary)) {
+            return 'El salario debe ser un número';
+        }
+
+        if (Number(empleado.salary) < 0) {
+            return 'El salario no puede ser negativo';
+        }
+
+        return null;
+    };
+
 });
